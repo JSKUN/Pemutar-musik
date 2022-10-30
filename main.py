@@ -94,4 +94,5 @@ stop_button.grid(row=4, column=0)
 
 openfolder_button = Button(file_frame,width=15, text="Select Music", command=open_folder)
 openfolder_button.grid(row=1,column=0)
+root.resizable(0, 0)
 root.mainloop()
