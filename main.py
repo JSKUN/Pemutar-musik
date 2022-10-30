@@ -36,10 +36,9 @@ song_box.grid(row=2, column=0)
 def prev_song():
     global musik
     musik=musik-1
-    if musik == 0:
-        musik=len(list)
+    if musik < 0:
+        musik=0
     back = songs[musik]
-
     mixer.music.load(back)
     mixer.music.play()
     song_state['text'] = "Playing"
@@ -68,7 +67,6 @@ def pause():
         song_state['text'] = "Pause"
 def stop():
     mixer.music.stop()
-    song_box.selection_clear(ACTIVE)
     song_state['text'] = "Stoped"
 
 def open_folder():
