@@ -25,7 +25,7 @@ file_frame.grid(row=1, column=1)
 song_state = Label(info_frame, width=60, text="No Song Played", font="Arial 8 bold")
 song_state.grid(row=0, column=0)
 
-song_box = Listbox(info_frame, width=60, selectbackground="#FD841F", bg="#B3FFAE")
+song_box = Listbox(info_frame, width=60,height=20, selectbackground="#FD841F", bg="#B3FFAE")
 song_box.grid(row=1, column=0)
 
 def prev_song():
@@ -75,11 +75,11 @@ def open_folder():
         song_box.insert(END, os.path.basename(song))
 
 
-back_button = Button(controls_frame,text="⟸", width=5, command=prev_song)
-forward_button = Button(controls_frame,text="⟹", width=5, command=next_song)
-play_button = Button(controls_frame,text="▶", width=5, command=play)
-pause_button = Button(controls_frame,text="⏸️", width=5, command=pause)
-stop_button = Button(controls_frame,text="🛑", width=5, command=stop)
+back_button = Button(controls_frame,text="⟸", width=5,height=5, command=prev_song)
+forward_button = Button(controls_frame,text="⟹", width=5,height=5, command=next_song)
+play_button = Button(controls_frame,text="▶", width=5,height=5, command=play)
+pause_button = Button(controls_frame,text="⏸️", width=5,height=5, command=pause)
+stop_button = Button(controls_frame,text="🛑", width=5,height=5, command=stop)
 back_button.grid(row=0, column=0)
 forward_button.grid(row=1, column=0)
 play_button.grid(row=2, column=0)
