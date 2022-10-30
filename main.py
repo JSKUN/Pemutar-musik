@@ -2,6 +2,7 @@ from tkinter import *
 from pygame import mixer
 from tkinter import filedialog
 import os
+from PIL import ImageTk, Image
 
 list=[]
 
@@ -9,6 +10,10 @@ musik=0
 
 mixer.init()
 root = Tk()
+load = Image.open("image.png")
+render = ImageTk.PhotoImage(load)
+root.iconphoto(False, render)
+root.title("Pemutar Musik Sederhana")
 
 master_frame = Frame(root)
 master_frame.pack()
@@ -26,7 +31,7 @@ song_state = Label(info_frame, width=60, text="No Song Played", font="Arial 8 bo
 song_state.grid(row=0, column=0)
 
 song_box = Listbox(info_frame, width=60,height=20, selectbackground="#FD841F", bg="#B3FFAE")
-song_box.grid(row=1, column=0)
+song_box.grid(row=2, column=0)
 
 def prev_song():
     global musik
@@ -37,7 +42,7 @@ def prev_song():
 
     mixer.music.load(back)
     mixer.music.play()
-
+    song_state['text'] = "Playing"
 def next_song():
     global musik
     musik=musik+1
@@ -47,12 +52,12 @@ def next_song():
 
     mixer.music.load(next_s)
     mixer.music.play()
-    
+    song_state['text'] = "Playing"
 def play():
     musik=list[0]
     mixer.music.load(musik)
     mixer.music.play()
-    song_state['text'] = "Playback"
+    song_state['text'] = "Playing"
 def pause():
     if song_state['text'] == "Pause":
         mixer.music.unpause()
@@ -73,6 +78,7 @@ def open_folder():
     for song in songs:
         list.append(song)
         song_box.insert(END, os.path.basename(song))
+
 
 
 back_button = Button(controls_frame,text="⟸", width=5,height=5, command=prev_song)
