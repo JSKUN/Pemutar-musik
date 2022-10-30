@@ -15,19 +15,19 @@ render = ImageTk.PhotoImage(load)
 root.iconphoto(False, render)
 root.title("Pemutar Musik Sederhana")
 
-master_frame = Frame(root)
+master_frame = Frame(root,bg="#628E90")
 master_frame.pack()
 
-info_frame = Frame(master_frame)
+info_frame = Frame(master_frame,bg="#628E90")
 info_frame.grid(row=0, column=1)
 
-controls_frame = Frame(master_frame)
+controls_frame = Frame(master_frame,bg="#628E90")
 controls_frame.grid(row=0, column=0)
 
-file_frame = Frame(master_frame)
+file_frame = Frame(master_frame,bg="#628E90")
 file_frame.grid(row=1, column=1)
 
-song_state = Label(info_frame, width=60, text="No Song Played", font="Arial 8 bold")
+song_state = Label(info_frame, width=60, text="No Song Played", font="Arial 8 bold",bg="#628E90")
 song_state.grid(row=0, column=0)
 
 song_box = Listbox(info_frame, width=60,height=20, selectbackground="#FD841F", bg="#B3FFAE")
