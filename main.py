@@ -76,7 +76,9 @@ def open_folder():
     for song in songs:
         list.append(song)
         song_box.insert(END, os.path.basename(song))
-
+def delete():
+    select = song_box.curselection()
+    song_box.delete(select)
 
 
 back_button = Button(controls_frame,text="⟸", width=5,height=5, command=prev_song)
@@ -92,5 +94,7 @@ stop_button.grid(row=4, column=0)
 
 openfolder_button = Button(file_frame,width=15, text="Select Music", command=open_folder)
 openfolder_button.grid(row=1,column=0)
+openfolder_button = Button(file_frame,width=15, text="Delete Music", command=delete)
+openfolder_button.grid(row=1,column=1)
 root.resizable(0, 0)
 root.mainloop()
