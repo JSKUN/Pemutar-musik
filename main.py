@@ -3,8 +3,7 @@ from pygame import mixer
 from tkinter import filedialog
 import os
 from PIL import ImageTk, Image
-
-list=[]
+os.system('clear')
 
 musik=0
 
@@ -33,49 +32,47 @@ song_state.grid(row=0, column=0)
 song_box = Listbox(info_frame, width=60,height=20, selectbackground="#FD841F", bg="#B3FFAE")
 song_box.grid(row=2, column=0)
 
+def open_folder():
+    global songs
+    songs = filedialog.askopenfilenames(initialdir='tracks/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3"),))
+
+    for song in songs:
+        song_box.insert(END, os.path.basename(song))
+
 def prev_song():
     global musik
     musik=musik-1
     if musik < 0:
         musik=0
-    back = songs[musik]
-    mixer.music.load(back)
+    mixer.music.load(songs[musik])
     mixer.music.play()
     song_state['text'] = "Playing"
 def next_song():
     global musik
     musik=musik+1
-    if musik == len(list):
+    if musik == len(songs):
         musik=0
-    next_s = list[musik]
-
-    mixer.music.load(next_s)
+    mixer.music.load(songs[musik])
     mixer.music.play()
     song_state['text'] = "Playing"
 def play():
-    musik=list[0]
-    mixer.music.load(musik)
+    global musik
+    mixer.music.load(list[musik])
     mixer.music.play()
     song_state['text'] = "Playing"
 def pause():
     if song_state['text'] == "Pause":
+        pause_button.config(text="⏸️")
         mixer.music.unpause()
         song_state['text'] = "Playing"
 
     else:
         mixer.music.pause()
         song_state['text'] = "Pause"
+        pause_button.config(text="      ▶️")        
 def stop():
     mixer.music.stop()
     song_state['text'] = "Stoped"
-
-def open_folder():
-    global songs
-    songs = filedialog.askopenfilenames(initialdir='tracks/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3"),))
-
-    for song in songs:
-        list.append(song)
-        song_box.insert(END, os.path.basename(song))
 
 back_button = Button(controls_frame,text="⟸", width=5,height=5, command=prev_song)
 forward_button = Button(controls_frame,text="⟹", width=5,height=5, command=next_song)
