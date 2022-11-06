@@ -76,10 +76,6 @@ def open_folder():
     for song in songs:
         list.append(song)
         song_box.insert(END, os.path.basename(song))
-def delete():
-    select = song_box.curselection()
-    song_box.delete(select)
-
 
 back_button = Button(controls_frame,text="⟸", width=5,height=5, command=prev_song)
 forward_button = Button(controls_frame,text="⟹", width=5,height=5, command=next_song)
